@@ -10,6 +10,8 @@ vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 
 -- delete single character without copying into register
 vim.keymap.set("n", "x", '"_x', opts)
+vim.keymap.set("v", "d", '"_d', opts) -- Delete without yanking
+vim.keymap.set("v", "D", "d", opts) -- Make D behave like d
 
 -- Vertical scroll and center
 vim.keymap.set("n", "<C-d>", "<C-d>zz", opts)
@@ -30,6 +32,11 @@ vim.keymap.set("n", "<Tab>", ":bnext<CR>", opts)
 vim.keymap.set("n", "<S-Tab>", ":bprevious<CR>", opts)
 vim.keymap.set("n", "<leader>x", ":Bdelete!<CR>", opts) -- close buffer
 vim.keymap.set("n", "<leader>b", "<cmd> enew <CR>", opts) -- new buffer
+
+-- close current buffer without closing window
+vim.cmd([[
+  command! WQ w | Bdelete!
+]])
 
 -- Increment/decrement numbers
 vim.keymap.set("n", "<leader>+", "<C-a>", opts) -- increment
@@ -72,8 +79,8 @@ vim.keymap.set("v", "p", '"_dP', opts)
 vim.keymap.set("n", "<leader>f", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 -- Navigate the line
-vim.keymap.set("n", "<leader>1", "^", opts)
-vim.keymap.set("n", "<leader>0", "$", opts)
+vim.keymap.set({ "n", "v" }, "<leader>1", "^", opts)
+vim.keymap.set({ "n", "v" }, "<leader>0", "$", opts)
 
 -- iPython
 vim.keymap.set("n", "<leader>op", ":vsplit term://ipython<CR>", opts)

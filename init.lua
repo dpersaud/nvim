@@ -41,6 +41,9 @@ require("lazy").setup({
 	require("plugins.undotree"),
 	require("plugins.surround"),
 	require("plugins.slime"),
+	require("plugins.trouble"),
+	require("plugins.copilot"),
+
 	-- require("plugins.iron"),
 	-- require("plugins.nvim-tmux-navigator"),
 })
