@@ -31,5 +31,10 @@ endfunction
 			vim.cmd([[ call slime#send_cell() ]])
 			vim.fn.search(vim.g.slime_cell_delimiter, "W") -- Move to the next cell delimiter
 		end)
+
+		-- Restart kernel
+		vim.keymap.set({ "n", "i" }, "<leader>rp", function()
+			vim.fn["slime#send"]("%reset -f\n")
+		end, { desc = "Restart IPython kernel" })
 	end,
 }

@@ -52,5 +52,44 @@ return {
 				end
 			end,
 		})
+
+		-- ⬇️ Add this block right after null_ls.setup
+		local formatted_once = {}
+
+		vim.api.nvim_create_autocmd("BufReadPost", {
+			pattern = "*.json",
+			callback = function(args)
+				local buf = args.buf
+				local filename = vim.api.nvim_buf_get_name(buf)
+
+				-- Avoid re-formatting already formatted files this session
+				if formatted_once[filename] then
+					return
+				end
+				formatted_once[filename] = true
+
+				-- Delay until null-ls attaches
+				vim.defer_fn(function()
+					local before = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
+
+					vim.lsp.buf.format({
+						bufnr = buf,
+						async = false,
+						filter = function(client)
+							return client.name == "null-ls"
+						end,
+					})
+
+					local after = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
+
+					-- If buffer changed, write the file
+					if vim.deep_equal(before, after) == false then
+						vim.api.nvim_buf_call(buf, function()
+							vim.cmd("silent! noautocmd write")
+						end)
+					end
+				end, 100) -- Delay to allow null-ls to attach
+			end,
+		})
 	end,
 }

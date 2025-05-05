@@ -232,6 +232,8 @@ return {
 						["<"] = "prev_source",
 						[">"] = "next_source",
 						["i"] = "show_file_details",
+						["v"] = "open_in_finder",
+
 						-- ["i"] = {
 						--   "show_file_details",
 						--   -- format strings of the timestamps shown for date created and last modified (see `:h os.date()`)
@@ -322,7 +324,16 @@ return {
 						},
 					},
 
-					commands = {}, -- Add a custom command or override a global one using the same function name
+					commands = {
+						open_in_finder = function(state)
+							local node = state.tree:get_node()
+							local path = node:get_id()
+							if node.type == "directory" then
+								path = path .. "/"
+							end
+							os.execute("open -R " .. path)
+						end,
+					}, -- Add a custom command or override a global one using the same function name
 				},
 				buffers = {
 					follow_current_file = {
