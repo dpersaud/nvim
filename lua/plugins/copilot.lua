@@ -10,8 +10,8 @@ return {
 				debounce = 75, -- Debounce time for suggestions
 				keymap = {
 					accept = "<S-Tab>", -- Accept full suggestion
-					accept_word = "<S-w>", -- Accept next word
-					accept_line = "<S-q>", -- Accept next suggestion (line-wise)
+					accept_word = "<C-w>", -- Accept next word
+					accept_line = "<C-q>", -- Accept next suggestion (line-wise)
 					next = "<C-.>", -- Go to next suggestion
 					prev = "<C-,>", -- Go to previous suggestion
 					dismiss = "<C-]>", -- Dismiss suggestion

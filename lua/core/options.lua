@@ -25,7 +25,7 @@ vim.o.completeopt = "menuone,noselect" -- Set completeopt to have a better compl
 vim.opt.termguicolors = true -- set termguicolors to enable highlight groups
 
 vim.o.whichwrap = "bs<>[]hl" -- which "horizontal" keys are allowed to travel to prev/next line
-vim.o.wrap = false -- display lines as one long line
+vim.o.wrap = true -- display lines as one long line
 vim.o.linebreak = true -- companion to wrap don't split words
 
 vim.o.scrolloff = 8 -- minimal number of screen lines to keep above and below the cursor

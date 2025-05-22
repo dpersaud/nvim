@@ -43,6 +43,7 @@ require("lazy").setup({
 	require("plugins.slime"),
 	require("plugins.trouble"),
 	require("plugins.copilot"),
+	require("plugins.markview"),
 
 	-- require("plugins.iron"),
 	-- require("plugins.nvim-tmux-navigator"),
