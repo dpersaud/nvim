@@ -11,7 +11,7 @@ vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 -- delete single character without copying into register
 vim.keymap.set("n", "x", '"_x', opts)
 vim.keymap.set("v", "d", '"_d', opts) -- Delete without yanking
-vim.keymap.set("v", "D", "d", opts)   -- Make D behave like d
+vim.keymap.set("v", "D", "d", opts) -- Make D behave like d
 
 -- Vertical scroll and center
 vim.keymap.set("n", "<C-d>", "<C-d>zz", opts)
@@ -30,7 +30,7 @@ vim.keymap.set("n", "<Right>", ":vertical resize +2<CR>", opts)
 -- Buffers
 vim.keymap.set("n", "<Tab>", ":bnext<CR>", opts)
 vim.keymap.set("n", "<S-Tab>", ":bprevious<CR>", opts)
-vim.keymap.set("n", "<leader>x", ":Bdelete!<CR>", opts)   -- close buffer
+vim.keymap.set("n", "<leader>x", ":Bdelete!<CR>", opts) -- close buffer
 vim.keymap.set("n", "<leader>b", "<cmd> enew <CR>", opts) -- new buffer
 
 -- save and close current buffer without closing window
@@ -47,9 +47,9 @@ vim.keymap.set("n", "<leader>+", "<C-a>", opts) -- increment
 vim.keymap.set("n", "<leader>-", "<C-x>", opts) -- decrement
 
 -- Window management
-vim.keymap.set("n", "<leader>v", "<C-w>v", opts)      -- split window vertically
-vim.keymap.set("n", "<leader>h", "<C-w>s", opts)      -- split window horizontally
-vim.keymap.set("n", "<leader>se", "<C-w>=", opts)     -- make split windows equal width & height
+vim.keymap.set("n", "<leader>v", "<C-w>v", opts) -- split window vertically
+vim.keymap.set("n", "<leader>h", "<C-w>s", opts) -- split window horizontally
+vim.keymap.set("n", "<leader>se", "<C-w>=", opts) -- make split windows equal width & height
 vim.keymap.set("n", "<leader>xs", ":close<CR>", opts) -- close current split window
 
 -- Navigate between splits
@@ -59,10 +59,10 @@ vim.keymap.set("n", "<C-h>", ":wincmd h<CR>", opts)
 vim.keymap.set("n", "<C-l>", ":wincmd l<CR>", opts)
 
 -- Tabs
-vim.keymap.set("n", "<leader>to", ":tabnew<CR>", opts)   -- open new tab
+vim.keymap.set("n", "<leader>to", ":tabnew<CR>", opts) -- open new tab
 vim.keymap.set("n", "<leader>tx", ":tabclose<CR>", opts) -- close current tab
-vim.keymap.set("n", "<leader>tn", ":tabn<CR>", opts)     --  go to next tab
-vim.keymap.set("n", "<leader>tp", ":tabp<CR>", opts)     --  go to previous tab
+vim.keymap.set("n", "<leader>tn", ":tabn<CR>", opts) --  go to next tab
+vim.keymap.set("n", "<leader>tp", ":tabp<CR>", opts) --  go to previous tab
 
 -- Press jk fast to exit insert mode
 vim.keymap.set("i", "jk", "<ESC>", opts)
@@ -97,5 +97,10 @@ vim.keymap.set({ "n", "v" }, "<leader>1", "^", opts)
 vim.keymap.set({ "n", "v" }, "<leader>0", "$", opts)
 
 -- iPython
-vim.keymap.set("n", "<leader>op", ":vsplit term://ipython<CR>", opts)
+vim.keymap.set("n", "<leader>op", ":vsplit term://ipython --profile=slime<CR>", opts)
 vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], opts) -- get back to normal mode in the terminal
+vim.g.slime_python_ipython = 1
+vim.g.slime_default_config = {
+	socket_name = "default",
+	target_pane = "{right-of}",
+}
