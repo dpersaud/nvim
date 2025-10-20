@@ -93,8 +93,8 @@ vim.keymap.set("n", "<leader>r", [[:%s/\<<C-r><C-w>\>/]], opts)
 vim.keymap.set("n", "<leader>R", [[:%s/\<<C-r><C-w>\>//gc<Left><Left><Left>]], opts)
 
 -- Navigate the line
-vim.keymap.set({ "n", "v" }, "<leader>1", "^", opts)
-vim.keymap.set({ "n", "v" }, "<leader>0", "$", opts)
+vim.keymap.set({ "n", "v" }, "<leader>h", "^", opts)
+vim.keymap.set({ "n", "v" }, "<leader>l", "$", opts)
 
 -- iPython
 vim.keymap.set("n", "<leader>op", ":vsplit term://ipython --profile=slime<CR>", opts)
@@ -104,3 +104,27 @@ vim.g.slime_default_config = {
 	socket_name = "default",
 	target_pane = "{right-of}",
 }
+
+-- toggle wrapping
+vim.keymap.set("n", "<leader>tw", function()
+  vim.wo.wrap = not vim.wo.wrap
+  vim.wo.linebreak = vim.wo.wrap
+  vim.wo.showbreak = vim.wo.wrap and "↪ " or ""
+
+  if vim.wo.wrap then
+    -- Movement keys respect visual lines
+    vim.keymap.set({ "n", "v" }, "j", "gj", { buffer = 0, silent = true })
+    vim.keymap.set({ "n", "v" }, "k", "gk", { buffer = 0, silent = true })
+    vim.keymap.set({ "n", "v" }, "<leader>h", "g0", { buffer = 0, silent = true })
+    vim.keymap.set({ "n", "v" }, "<leader>l", "g$", { buffer = 0, silent = true })
+  else
+    -- Restore defaults when wrap is off
+    vim.keymap.del({ "n", "v" }, "j", { buffer = 0 })
+    vim.keymap.del({ "n", "v" }, "k", { buffer = 0 })
+    vim.keymap.del({ "n", "v" }, "0", { buffer = 0 })
+    vim.keymap.del({ "n", "v" }, "$", { buffer = 0 })
+  end
+
+  vim.notify("wrap = " .. tostring(vim.wo.wrap), vim.log.levels.INFO)
+end, { desc = "Toggle wrap", noremap = true, silent = true })
+

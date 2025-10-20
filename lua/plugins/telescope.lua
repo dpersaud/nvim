@@ -79,6 +79,11 @@ return {
 		pcall(require("telescope").load_extension, "fzf")
 		pcall(require("telescope").load_extension, "ui-select")
 
+		-- Enable spell suggestions
+		pcall(require("telescope").load_extension, "spell")
+
+
+		vim.keymap.set("n", "<leader>ss", builtin.spell_suggest, { desc = "[S]earch [S]pell Suggestions" })
 		vim.keymap.set("n", "<leader>?", builtin.oldfiles, { desc = "[?] Find recently opened files" })
 		vim.keymap.set("n", "<leader>sb", builtin.buffers, { desc = "[S]earch existing [B]uffers" })
 		vim.keymap.set("n", "<leader>sm", builtin.marks, { desc = "[S]earch [M]arks" })
