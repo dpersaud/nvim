@@ -9,5 +9,14 @@ return {
 
 		vim.g.vimtex_view_skim_sync = 1
 		vim.g.vimtex_view_skim_active = 1
+		vim.g.vimtex_compiler_latexmk = {
+		  options = {
+			"-pdf",
+			"-shell-escape",
+			"-interaction=nonstopmode",
+			"-synctex=1",
+		  },
+		}
+
 	end,
 }
