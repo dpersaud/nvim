@@ -25,7 +25,7 @@ vim.opt.rtp:prepend(lazypath)
 --
 -- NOTE: Here is where you install your plugins.
 require("lazy").setup({
-	require("plugins.neotree"),
+	require("plugins.neotree"),				-- replace with yazi at some point (https://github.com/mikavilpas/yazi.nvim?tab=readme-ov-file, https://github.com/sxyazi/yazi)
 	require("plugins.colortheme"),
 	require("plugins.bufferline"),
 	require("plugins.lualine"),
@@ -45,7 +45,8 @@ require("lazy").setup({
 	require("plugins.copilot"),
 	require("plugins.markview"),
 	require("plugins.vimtex"),
-	require("plugins.gh"),
+	require("plugins.snacks"),
+	require("plugins.marks"),
 
 	-- require("plugins.iron"),
 	-- require("plugins.nvim-tmux-navigator"),
