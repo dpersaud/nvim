@@ -1,12 +1,12 @@
 return {
-	"jpalardy/vim-slime",
-	init = function()
-		vim.g.slime_target = "neovim"
-		vim.g.slime_python_ipython = 1
-		vim.g.slime_dispatch_ipython_pause = 100
-		vim.g.slime_cell_delimiter = "#\\s\\=%%"
+  "jpalardy/vim-slime",
+  init = function()
+    vim.g.slime_target = "neovim"
+    vim.g.slime_python_ipython = 1
+    vim.g.slime_dispatch_ipython_pause = 100
+    vim.g.slime_cell_delimiter = "#\\s\\=%%"
 
-		vim.cmd([[
+    vim.cmd([[
                 function! _EscapeText_python(text)
   if slime#config#resolve("python_ipython") && len(split(a:text,"\n")) > 1
     return ["%cpaste -q\n", slime#config#resolve("dispatch_ipython_pause"), a:text, "--\n"]
@@ -21,20 +21,20 @@ return {
   end
 endfunction
                 ]])
-	end,
-	config = function()
-		vim.keymap.set({ "n", "i" }, "<S-CR>", function()
-			vim.cmd([[ call slime#send_cell() ]])
-		end)
+  end,
+  config = function()
+    vim.keymap.set({ "n", "i" }, "<S-CR>", function()
+      vim.cmd([[ call slime#send_cell() ]])
+    end)
 
-		vim.keymap.set({ "n", "i" }, "<C-CR>", function()
-			vim.cmd([[ call slime#send_cell() ]])
-			vim.fn.search(vim.g.slime_cell_delimiter, "W") -- Move to the next cell delimiter
-		end)
+    vim.keymap.set({ "n", "i" }, "<C-CR>", function()
+      vim.cmd([[ call slime#send_cell() ]])
+      vim.fn.search(vim.g.slime_cell_delimiter, "W") -- Move to the next cell delimiter
+    end)
 
-		-- Restart kernel
-		vim.keymap.set({ "n", "i" }, "<leader>rp", function()
-			vim.fn["slime#send"]("%reset -f\n")
-		end, { desc = "Restart IPython kernel" })
-	end,
+    -- Restart kernel
+    vim.keymap.set({ "n", "i" }, "<leader>rp", function()
+      vim.fn["slime#send"]("%reset -f\n")
+    end, { desc = "Restart IPython kernel" })
+  end,
 }

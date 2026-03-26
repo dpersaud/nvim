@@ -5,11 +5,11 @@ require("core.keymaps")
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
-	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-	local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
-	if vim.v.shell_error ~= 0 then
-		error("Error cloning lazy.nvim:\n" .. out)
-	end
+  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+  local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+  if vim.v.shell_error ~= 0 then
+    error("Error cloning lazy.nvim:\n" .. out)
+  end
 end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
@@ -25,29 +25,35 @@ vim.opt.rtp:prepend(lazypath)
 --
 -- NOTE: Here is where you install your plugins.
 require("lazy").setup({
-	require("plugins.neotree"),				-- replace with yazi at some point (https://github.com/mikavilpas/yazi.nvim?tab=readme-ov-file, https://github.com/sxyazi/yazi)
-	require("plugins.colortheme"),
-	require("plugins.bufferline"),
-	require("plugins.lualine"),
-	require("plugins.treesitter"),
-	require("plugins.telescope"),
-	require("plugins.lsp"),
-	require("plugins.autocompletion"),
-	require("plugins.none-ls"),
-	require("plugins.gitsigns"),
-	require("plugins.alpha"),
-	require("plugins.indent-blankline"),
-	require("plugins.misc"),
-	require("plugins.undotree"),
-	require("plugins.surround"),
-	require("plugins.slime"),
-	require("plugins.trouble"),
-	require("plugins.copilot"),
-	require("plugins.markview"),
-	require("plugins.vimtex"),
-	require("plugins.snacks"),
-	require("plugins.marks"),
+  require("plugins.icons"),
+  require("plugins.colortheme"),
+  require("plugins.lualine"),
+  require("plugins.treesitter"),
+  require("plugins.mason"), -- used for installing LSP servers
+  require("plugins.lsp"),
+  require("plugins.telescope"),
+  require("plugins.blink"),
+  require("plugins.undotree"),
+  require("plugins.marks"),
+  require("plugins.indent-blankline"),
+  require("plugins.surround"),
+  require("plugins.slime"),
+  require("plugins.vimtex"),
+  require("plugins.copilot"),
+  require("plugins.misc"),
 
-	-- require("plugins.iron"),
-	-- require("plugins.nvim-tmux-navigator"),
+
+  -- require("plugins.bufferline"),     -- no longer using this
+  -- require("plugins.neotree"),				-- just using :e for noe
+  -- -- replace with yazi at some point (https://github.com/mikavilpas/yazi.nvim?tab=readme-ov-file, https://github.com/sxyazi/yazi)
+  -- require("plugins.autocompletion"), -- replaced by blin
+  -- require("plugins.none-ls"),        -- i have no idea what this does
+  -- require("plugins.gitsigns"),
+  -- require("plugins.alpha"),
+  -- require("plugins.trouble"), ---
+  -- require("plugins.markview"),
+  -- require("plugins.snacks"),
+  --
+  -- require("plugins.iron"),
+  -- require("plugins.nvim-tmux-navigator"),
 })
