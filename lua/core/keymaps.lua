@@ -140,7 +140,7 @@ vim.keymap.set("n", "<leader>tw", function()
     vim.keymap.set({ "n", "v" }, "j", "gj", { buffer = 0, silent = true })
     vim.keymap.set({ "n", "v" }, "k", "gk", { buffer = 0, silent = true })
     vim.keymap.set({ "n", "v" }, "<leader>h", "g0", { buffer = 0, silent = true })
-    vim.keymap.set({ "n", "v" }, "<leader>l", "g$", { buffer = 0, silent = true })
+    vim.keymap.set({ "n", "v" }, "<leader>l", "g_", { buffer = 0, silent = true })
   else
     -- Restore defaults when wrap is off
     vim.keymap.del({ "n", "v" }, "j", { buffer = 0 })
