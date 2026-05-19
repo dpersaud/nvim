@@ -1,5 +1,6 @@
 require("core.options")
 require("core.keymaps")
+require("core.autocmds")
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
@@ -39,7 +40,8 @@ require("lazy").setup({
   require("plugins.surround"),
   require("plugins.slime"),
   require("plugins.vimtex"),
-  require("plugins.copilot"),
+  require("plugins.copilot"), -- maybe replace this with something like "ollama-copilot" so it can run locally and not require an internet connection
+  require("plugins.gen"),
   require("plugins.misc"),
 
 

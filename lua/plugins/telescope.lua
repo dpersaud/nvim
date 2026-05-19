@@ -85,7 +85,7 @@ return {
 
 
     vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "[ ] Find existing buffers" })
-    vim.keymap.set("n", "<leader>fd", builtin.find_files, { desc = "[F]ind in [D]irectory" })
+    vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "[F]ind [F]iles" })
     vim.keymap.set("n", "<leader>fm", builtin.marks, { desc = "[F]ind [M]arks" })
     vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "fuzzy [F]ind by [G]rep" })
     vim.keymap.set("n", "<leader>/", function()
@@ -95,6 +95,13 @@ return {
       }))
     end, { desc = "[/] Fuzzily search in current buffer" })
 
+    -- find in nvim config
+    vim.keymap.set("n", "<leader>fc", function()
+      require("telescope.builtin").find_files({
+        prompt_title = "Neovim Config",
+        cwd = "~/.config/nvim",
+      })
+    end, { desc = "[F]ind [C]onfig" })
     -- vim.keymap.set("n", "<leader>foi",
     --   function()
     --     builtin.lsp_document_symbols({
@@ -119,7 +126,7 @@ return {
     -- vim.keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "[S]earch [H]elp" })
 
 
-    -- vim.keymap.set("n", "<leader>fs", builtin.spell_suggest, { desc = "[F]ind [S]pell Suggestions" })
+    vim.keymap.set("n", "<leader>fs", builtin.spell_suggest, { desc = "[F]ind [S]pell Suggestions" })
     -- vim.keymap.set("n", "<leader>?", builtin.oldfiles, { desc = "[?] Find recently opened files" })
     -- vim.keymap.set("n", "<leader>sb", builtin.buffers, { desc = "[S]earch existing [B]uffers" })
     -- vim.keymap.set("n", "<leader>gf", builtin.git_files, { desc = "Search [G]it [F]iles" })

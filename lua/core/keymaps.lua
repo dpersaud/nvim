@@ -9,10 +9,13 @@ local opts = { noremap = true, silent = true }
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 
 -- Clipboard
-vim.keymap.set("n", "x", '"_x', opts)  -- delete character without putting it in clipboard
-vim.keymap.set("v", "d", '"_d', opts)  -- Delete without yanking
-vim.keymap.set("v", "D", "d", opts)    -- Make D behave like d
-vim.keymap.set("v", "p", '"_dp', opts) -- paste without replacing clipboard
+vim.keymap.set("n", "x", '"_x', opts)          -- delete character without putting it in clipboard
+vim.keymap.set({ "n", "v" }, "d", '"_d', opts) -- Delete without yanking
+vim.keymap.set({ "n", "v" }, "D", "d", opts)   -- Make D behave like d ie. delete and yank
+vim.keymap.set("v", "p", '"_dP', opts)         -- paste without replacig clipboard
+vim.keymap.set("n", "DD", 'dd', opts)          -- Make DD behave like dd ie. delete line and yank
+vim.keymap.set("n", "dd", '"_dd', opts)        -- delete line without putting it in clipboard
+
 
 vim.api.nvim_create_autocmd("TextYankPost", {
   desc = "Highlight when yanking text",
@@ -23,7 +26,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 -- Seraching
-vim.keymap.set("n", "<leader>'", ":nohl<CR>") -- clear search highlighting
+vim.keymap.set("n", "<leader>?", ":nohl<CR>") -- clear search highlighting
 
 
 -- Vertical scroll and center
@@ -43,6 +46,8 @@ vim.keymap.set("n", "<leader>tp", "<cmd>tabp<CR>")     -- previous tab
 -- File Explorer
 vim.keymap.set("n", "<leader>e", ":e .<CR>")
 
+-- Chat
+vim.keymap.set({ 'n', 'v' }, '<leader>]', ':Gen Chat<CR>')
 
 --
 -- -- Resize with arrows
@@ -96,6 +101,10 @@ vim.keymap.set("i", "kj", "<ESC>", opts)
 vim.keymap.set("t", "jk", [[<C-\><C-n>]], opts)
 vim.keymap.set("t", "kj", [[<C-\><C-n>]], opts)
 
+-- do the same in visual mode
+vim.keymap.set("v", "jk", "<ESC>", opts)
+vim.keymap.set("v", "kj", "<ESC>", opts)
+
 -- Stay in indent mode
 vim.keymap.set("v", "<", "<gv", opts)
 vim.keymap.set("v", ">", ">gv", opts)
@@ -140,13 +149,15 @@ vim.keymap.set("n", "<leader>tw", function()
     vim.keymap.set({ "n", "v" }, "j", "gj", { buffer = 0, silent = true })
     vim.keymap.set({ "n", "v" }, "k", "gk", { buffer = 0, silent = true })
     vim.keymap.set({ "n", "v" }, "<leader>h", "g0", { buffer = 0, silent = true })
-    vim.keymap.set({ "n", "v" }, "<leader>l", "g_", { buffer = 0, silent = true })
+    -- vim.keymap.set({ "n", "v" }, "<leader>l", "g$", { buffer = 0, silent = true })
+    vim.keymap.set("n", "<leader>l", "g$", { buffer = 0, silent = true })
+    vim.keymap.set("v", "<leader>l", "g_", { buffer = 0, silent = true })
   else
     -- Restore defaults when wrap is off
     vim.keymap.del({ "n", "v" }, "j", { buffer = 0 })
     vim.keymap.del({ "n", "v" }, "k", { buffer = 0 })
-    vim.keymap.del({ "n", "v" }, "0", { buffer = 0 })
-    vim.keymap.del({ "n", "v" }, "$", { buffer = 0 })
+    vim.keymap.del({ "n", "v" }, "^", { buffer = 0 })
+    vim.keymap.del({ "n", "v" }, "g_", { buffer = 0 })
   end
 
   vim.notify("wrap = " .. tostring(vim.wo.wrap), vim.log.levels.INFO)
