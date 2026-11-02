@@ -1,6 +1,8 @@
-# AUTHOR: Daniel Persaud
-# EMAIL:  da.persaud@mail.utoronto.ca
-# DESC:   
-# ------------------------------------------------------------ #
+@author:    Daniel Persaud
+@email:     da.persaud@mail.utoronto.ca
+@desc:      
+-------------------------------------------------------------------------------
+'''
 
+# %%
 # IMPORT DEPENDENCIES ---------------------------------------------------------

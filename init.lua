@@ -40,7 +40,7 @@ require("lazy").setup({
   require("plugins.surround"),
   require("plugins.slime"),
   require("plugins.vimtex"),
-  require("plugins.copilot"), -- maybe replace this with something like "ollama-copilot" so it can run locally and not require an internet connection
+  -- require("plugins.copilot"), -- maybe replace this with something like "ollama-copilot" so it can run locally and not require an internet connection
   require("plugins.gen"),
   require("plugins.misc"),
 
